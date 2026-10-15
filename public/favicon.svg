@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ECFDF5" />
+      <stop offset="100%" stop-color="#D1FAE5" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#064E3B" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- 電卓本体 -->
+  <rect x="8" y="4" width="48" height="56" rx="12" fill="url(#bodyGrad)" filter="url(#shadow)" />
+
+  <!-- 液晶ディスプレイ -->
+  <rect x="14" y="10" width="36" height="13" rx="4" fill="url(#screenGrad)" />
+  
+  <!-- 液晶内の「¥」文字（電卓・納税シミュレータらしさ） -->
+  <text x="44" y="20.5" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900" fill="#047857" text-anchor="end">¥</text>
+
+  <!-- テンキーボタン（1行目） -->
+  <rect x="14" y="27" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <rect x="27.5" y="27" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <rect x="41" y="27" width="9" height="7" rx="3" fill="#FDE68A" />
+
+  <!-- テンキーボタン（2行目） -->
+  <rect x="14" y="37" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <rect x="27.5" y="37" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <rect x="41" y="37" width="9" height="7" rx="3" fill="#F59E0B" />
+
+  <!-- テンキーボタン（3行目: 下段） -->
+  <rect x="14" y="47" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <rect x="27.5" y="47" width="9" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.95" />
+  <!-- イコールキー（オレンジアクセントで目立たせる） -->
+  <rect x="41" y="47" width="9" height="7" rx="3" fill="#F97316" />
+  <!-- イコールの「=」マーク -->
+  <line x1="43.5" y1="49.5" x2="47.5" y2="49.5" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+  <line x1="43.5" y1="51.5" x2="47.5" y2="51.5" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" />
+</svg>
