@@ -1,6 +1,6 @@
-import React from 'react';
-import { Zap, FileText } from 'lucide-react';
-import type { UserInputState, EasyFamilyPreset } from '../../domain/calculator/types';
+import { FileText, Zap } from 'lucide-react';
+import type React from 'react';
+import type { EasyFamilyPreset, UserInputState } from '../../domain/calculator/types';
 import { NumberInput } from '../common/NumberInput';
 
 interface SimpleModeSectionProps {
@@ -18,7 +18,11 @@ export const SimpleModeSection: React.FC<SimpleModeSectionProps> = ({
     { preset: 'single', label: '独身・単身', desc: '配偶者・扶養なし' },
     { preset: 'married_no_child', label: '夫婦（子なし）', desc: '配偶者控除あり' },
     { preset: 'married_child_highschool', label: '夫婦 ＋ 高校生1人', desc: '配偶者 ＋ 16〜18歳' },
-    { preset: 'married_child_college', label: '夫婦 ＋ 大学生1人', desc: '配偶者 ＋ 19〜22歳(特定)' },
+    {
+      preset: 'married_child_college',
+      label: '夫婦 ＋ 大学生1人',
+      desc: '配偶者 ＋ 19〜22歳(特定)',
+    },
   ];
 
   return (
@@ -30,10 +34,10 @@ export const SimpleModeSection: React.FC<SimpleModeSectionProps> = ({
               <Zap size={18} />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-slate-800">
-                かんたん30秒入力
-              </h2>
-              <p className="text-xs text-slate-500">数字を1〜2つ入れるだけで上限額をスピード試算！</p>
+              <h2 className="text-base sm:text-lg font-bold text-slate-800">かんたん30秒入力</h2>
+              <p className="text-xs text-slate-500">
+                数字を1〜2つ入れるだけで上限額をスピード試算！
+              </p>
             </div>
           </div>
 
@@ -68,7 +72,8 @@ export const SimpleModeSection: React.FC<SimpleModeSectionProps> = ({
             <div className="p-3 bg-emerald-50/60 rounded-2xl border border-emerald-100 text-xs text-emerald-900 leading-relaxed flex items-start gap-2">
               <FileText size={16} className="text-emerald-700 shrink-0 mt-0.5" />
               <span>
-                昨年の確定申告書Bがお手元にある方は、第一表の<strong>「課税される所得金額（㉚番）」</strong>を入れるだけで一発で計算できます！
+                昨年の確定申告書Bがお手元にある方は、第一表の
+                <strong>「課税される所得金額（㉚番）」</strong>を入れるだけで一発で計算できます！
               </span>
             </div>
 
@@ -100,9 +105,9 @@ export const SimpleModeSection: React.FC<SimpleModeSectionProps> = ({
             />
 
             <div className="pt-2">
-              <label className="text-sm font-semibold text-slate-800 block mb-2">
+              <span className="text-sm font-semibold text-slate-800 block mb-2">
                 家族構成を選択
-              </label>
+              </span>
               <div className="grid grid-cols-2 gap-2">
                 {familyPresets.map((opt) => {
                   const isSelected = inputs.easyFamilyPreset === opt.preset;

@@ -1,26 +1,19 @@
 import { useState } from 'react';
-import { Header } from './components/Header';
 import { Toast } from './components/common/Toast';
-import { SimpleModeSection } from './components/input/SimpleModeSection';
+import { Header } from './components/Header';
 import { BusinessIncomeSection } from './components/input/BusinessIncomeSection';
-import { SocialInsuranceSection } from './components/input/SocialInsuranceSection';
 import { FamilySection } from './components/input/FamilySection';
 import { OtherDeductionsSection } from './components/input/OtherDeductionsSection';
-import { ResultSummaryCard } from './components/result/ResultSummaryCard';
-import { FormulaBreakdown } from './components/result/FormulaBreakdown';
+import { SimpleModeSection } from './components/input/SimpleModeSection';
+import { SocialInsuranceSection } from './components/input/SocialInsuranceSection';
 import { FloatingSummaryBar } from './components/result/FloatingSummaryBar';
+import { FormulaBreakdown } from './components/result/FormulaBreakdown';
+import { ResultSummaryCard } from './components/result/ResultSummaryCard';
 import { useTaxCalculator } from './hooks/useTaxCalculator';
 
 export function App() {
-  const {
-    inputs,
-    updateField,
-    resetInputs,
-    saveInputs,
-    isSimpleMode,
-    setIsSimpleMode,
-    result,
-  } = useTaxCalculator();
+  const { inputs, updateField, resetInputs, saveInputs, isSimpleMode, setIsSimpleMode, result } =
+    useTaxCalculator();
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -46,9 +39,7 @@ export function App() {
   };
 
   const hasInputValues =
-    inputs.easyTaxableIncome > 0 ||
-    inputs.easyRevenue > 0 ||
-    inputs.businessRevenue > 0;
+    inputs.easyTaxableIncome > 0 || inputs.easyRevenue > 0 || inputs.businessRevenue > 0;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 pb-24 sm:pb-16 relative">
@@ -80,16 +71,9 @@ export function App() {
                 isSimpleMode={false}
               />
 
-              <SocialInsuranceSection
-                inputs={inputs}
-                updateField={updateField}
-              />
+              <SocialInsuranceSection inputs={inputs} updateField={updateField} />
 
-              <FamilySection
-                inputs={inputs}
-                updateField={updateField}
-                isSimpleMode={false}
-              />
+              <FamilySection inputs={inputs} updateField={updateField} isSimpleMode={false} />
 
               <OtherDeductionsSection
                 inputs={inputs}
@@ -107,8 +91,14 @@ export function App() {
         </main>
 
         <footer className="text-center text-xs text-slate-400 space-y-1.5 py-6">
-          <p>※ 本シミュレーションは令和8年現在の日本の税法および総務省のふるさと納税制度に準拠して試算しています。</p>
-          <p>※ 実際の寄附上限額は自治体や個別の税額控除等により差異が生じる場合があります。目安としてご活用ください。</p>
+          <p>
+            ※
+            本シミュレーションは令和8年現在の日本の税法および総務省のふるさと納税制度に準拠して試算しています。
+          </p>
+          <p>
+            ※
+            実際の寄附上限額は自治体や個別の税額控除等により差異が生じる場合があります。目安としてご活用ください。
+          </p>
         </footer>
       </div>
 

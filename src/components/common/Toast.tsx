@@ -1,5 +1,5 @@
-import React from 'react';
-import { CheckCircle2, Info, AlertCircle } from 'lucide-react';
+import { AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import type React from 'react';
 
 interface ToastProps {
   message: string | null;
@@ -23,7 +23,9 @@ export const Toast: React.FC<ToastProps> = ({ message, type = 'success' }) => {
 
   return (
     <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 animate-in fade-in slide-in-from-top-4">
-      <div className={`flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg border text-xs sm:text-sm font-semibold backdrop-blur-xs ${bgStyles}`}>
+      <div
+        className={`flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg border text-xs sm:text-sm font-semibold backdrop-blur-xs ${bgStyles}`}
+      >
         <Icon size={16} className="text-emerald-300 shrink-0" />
         <span>{message}</span>
       </div>

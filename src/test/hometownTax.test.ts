@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { calculateHometownTax } from '../domain/calculator/hometownTax';
-import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 import type { UserInputState } from '../domain/calculator/types';
+import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 
 describe('Hometown Tax Calculation & Step Breakdown', () => {
   it('calculates realistic freelance scenario correctly', () => {
@@ -20,7 +20,7 @@ describe('Hometown Tax Calculation & Step Breakdown', () => {
     expect(result.totalDeductionsResidentTax).toBe(1_470_000);
     expect(result.taxableIncome).toBe(2_830_000);
     expect(result.taxableIncomeResidentTax).toBe(2_880_000);
-    expect(result.marginalIncomeTaxRate).toBe(0.10);
+    expect(result.marginalIncomeTaxRate).toBe(0.1);
     expect(result.effectiveIncomeTaxRate).toBeCloseTo(0.1021, 4);
     expect(result.residentTaxIncomePercent).toBe(285_500);
     expect(result.hometownTaxLimit).toBeGreaterThan(70_000);
@@ -60,7 +60,9 @@ describe('Hometown Tax Calculation & Step Breakdown', () => {
     const resNoMortgage = calculateHometownTax(inputWithoutMortgage);
     const resWithMortgage = calculateHometownTax(inputWithMortgage);
 
-    expect(resWithMortgage.residentTaxIncomePercent).toBeLessThan(resNoMortgage.residentTaxIncomePercent);
+    expect(resWithMortgage.residentTaxIncomePercent).toBeLessThan(
+      resNoMortgage.residentTaxIncomePercent,
+    );
     expect(resWithMortgage.hometownTaxLimit).toBeLessThan(resNoMortgage.hometownTaxLimit);
   });
 });

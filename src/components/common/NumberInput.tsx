@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import type React from 'react';
+import { useEffect, useId, useState } from 'react';
 import { HelpTooltip } from './HelpTooltip';
 
 interface NumberInputProps {
@@ -22,6 +23,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   unit = '円',
   disabled = false,
 }) => {
+  const inputId = useId();
   const [displayValue, setDisplayValue] = useState<string>(() => {
     return value === 0 ? '' : value.toLocaleString('ja-JP');
   });
@@ -41,8 +43,8 @@ export const NumberInput: React.FC<NumberInputProps> = ({
       return;
     }
 
-    const num = parseInt(raw, 10);
-    if (!isNaN(num)) {
+    const num = Number.parseInt(raw, 10);
+    if (!Number.isNaN(num)) {
       setDisplayValue(num.toLocaleString('ja-JP'));
       onChange(num);
     }
@@ -51,7 +53,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   return (
     <div className="w-full mb-4">
       <div className="flex items-center justify-between mb-1.5">
-        <label className="text-sm font-semibold text-slate-800 flex items-center">
+        <label htmlFor={inputId} className="text-sm font-semibold text-slate-800 flex items-center">
           {label}
           {tooltip && <HelpTooltip text={tooltip} title={label} />}
         </label>
@@ -60,6 +62,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
 
       <div className="relative rounded-2xl shadow-xs transition-all">
         <input
+          id={inputId}
           type="text"
           inputMode="numeric"
           value={displayValue}

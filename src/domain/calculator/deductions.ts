@@ -18,7 +18,7 @@ export interface DeductionsResult {
   earthquakeInsuranceDeductionIncomeTax: number;
   earthquakeInsuranceDeductionResidentTax: number;
   medicalExpensesDeduction: number;
-  
+
   incomeTaxDeductions: number;
   residentTaxDeductions: number;
   humanDeductionDiff: number;
@@ -28,7 +28,11 @@ export interface DeductionsResult {
 /**
  * 基礎控除の算出
  */
-function calcBasicDeduction(totalIncome: number): { incomeTax: number; residentTax: number; diff: number } {
+function calcBasicDeduction(totalIncome: number): {
+  incomeTax: number;
+  residentTax: number;
+  diff: number;
+} {
   if (totalIncome <= 24_000_000) {
     return { incomeTax: 480_000, residentTax: 430_000, diff: 50_000 };
   } else if (totalIncome <= 24_500_000) {
@@ -46,7 +50,7 @@ function calcSpouseDeduction(
   hasSpouse: boolean,
   spouseIncome: number,
   spouseAge70OrOver: boolean,
-  totalIncome: number
+  totalIncome: number,
 ): { incomeTax: number; residentTax: number; diff: number } {
   if (!hasSpouse || totalIncome > 10_000_000) {
     return { incomeTax: 0, residentTax: 0, diff: 0 };
@@ -56,13 +60,17 @@ function calcSpouseDeduction(
   if (spouseIncome <= 1_030_000) {
     if (spouseAge70OrOver) {
       // 老人控除対象配偶者
-      const incomeTax = totalIncome <= 9_000_000 ? 480_000 : totalIncome <= 9_500_000 ? 320_000 : 160_000;
-      const residentTax = totalIncome <= 9_000_000 ? 380_000 : totalIncome <= 9_500_000 ? 260_000 : 130_000;
+      const incomeTax =
+        totalIncome <= 9_000_000 ? 480_000 : totalIncome <= 9_500_000 ? 320_000 : 160_000;
+      const residentTax =
+        totalIncome <= 9_000_000 ? 380_000 : totalIncome <= 9_500_000 ? 260_000 : 130_000;
       return { incomeTax, residentTax, diff: 100_000 };
     } else {
       // 一般配偶者
-      const incomeTax = totalIncome <= 9_000_000 ? 380_000 : totalIncome <= 9_500_000 ? 260_000 : 130_000;
-      const residentTax = totalIncome <= 9_000_000 ? 330_000 : totalIncome <= 9_500_000 ? 220_000 : 110_000;
+      const incomeTax =
+        totalIncome <= 9_000_000 ? 380_000 : totalIncome <= 9_500_000 ? 260_000 : 130_000;
+      const residentTax =
+        totalIncome <= 9_000_000 ? 330_000 : totalIncome <= 9_500_000 ? 220_000 : 110_000;
       return { incomeTax, residentTax, diff: 50_000 };
     }
   }
@@ -93,7 +101,11 @@ function calcSpouseDeduction(
 /**
  * 扶養控除の算出
  */
-function calcDependentDeductions(input: UserInputState): { incomeTax: number; residentTax: number; diff: number } {
+function calcDependentDeductions(input: UserInputState): {
+  incomeTax: number;
+  residentTax: number;
+  diff: number;
+} {
   if (!input.hasDependents) {
     return { incomeTax: 0, residentTax: 0, diff: 0 };
   }
@@ -135,7 +147,11 @@ function calcDependentDeductions(input: UserInputState): { incomeTax: number; re
 /**
  * 寡婦・ひとり親控除
  */
-function calcSingleParentDeduction(type: UserInputState['singleParentType']): { incomeTax: number; residentTax: number; diff: number } {
+function calcSingleParentDeduction(type: UserInputState['singleParentType']): {
+  incomeTax: number;
+  residentTax: number;
+  diff: number;
+} {
   if (type === 'single_parent') {
     return { incomeTax: 350_000, residentTax: 300_000, diff: 50_000 };
   } else if (type === 'widow') {
@@ -147,7 +163,11 @@ function calcSingleParentDeduction(type: UserInputState['singleParentType']): { 
 /**
  * 障害者控除
  */
-function calcDisabilityDeduction(input: UserInputState): { incomeTax: number; residentTax: number; diff: number } {
+function calcDisabilityDeduction(input: UserInputState): {
+  incomeTax: number;
+  residentTax: number;
+  diff: number;
+} {
   const g = input.generalDisabledCount || 0;
   const s = input.specialDisabledCount || 0;
   const ls = input.livingSpecialDisabledCount || 0;
@@ -166,7 +186,10 @@ function calcDisabilityDeduction(input: UserInputState): { incomeTax: number; re
  * 生命保険料控除（確定申告書B ⑮番の控除額）
  * 所得税上限12万円、住民税上限7万円
  */
-function calcLifeInsuranceDeduction(deductionAmount: number): { incomeTax: number; residentTax: number } {
+function calcLifeInsuranceDeduction(deductionAmount: number): {
+  incomeTax: number;
+  residentTax: number;
+} {
   const d = Math.max(0, Math.min(120_000, deductionAmount));
   if (d === 0) return { incomeTax: 0, residentTax: 0 };
 
@@ -183,7 +206,10 @@ function calcLifeInsuranceDeduction(deductionAmount: number): { incomeTax: numbe
  * 地震保険料控除（確定申告書B ⑯番の控除額）
  * 所得税上限5万円、住民税上限2.5万円（所得税の半額）
  */
-function calcEarthquakeInsuranceDeduction(deductionAmount: number): { incomeTax: number; residentTax: number } {
+function calcEarthquakeInsuranceDeduction(deductionAmount: number): {
+  incomeTax: number;
+  residentTax: number;
+} {
   const d = Math.max(0, Math.min(50_000, deductionAmount));
   const incomeTax = d;
   const residentTax = Math.min(25_000, Math.floor(d / 2));
@@ -205,7 +231,12 @@ function calcMedicalExpensesDeduction(deductionAmount: number): number {
  */
 export function calcDeductions(input: UserInputState, totalIncome: number): DeductionsResult {
   const basic = calcBasicDeduction(totalIncome);
-  const spouse = calcSpouseDeduction(input.hasSpouse, input.spouseIncome, input.spouseAge70OrOver, totalIncome);
+  const spouse = calcSpouseDeduction(
+    input.hasSpouse,
+    input.spouseIncome,
+    input.spouseAge70OrOver,
+    totalIncome,
+  );
   const dependent = calcDependentDeductions(input);
   const singleParent = calcSingleParentDeduction(input.singleParentType);
   const disability = calcDisabilityDeduction(input);
@@ -252,7 +283,7 @@ export function calcDeductions(input: UserInputState, totalIncome: number): Dedu
       adjustmentDeduction = Math.floor(Math.min(humanDeductionDiff, taxableForAdjustment) * 0.05);
     } else {
       adjustmentDeduction = Math.floor(
-        Math.max(2_500, (humanDeductionDiff - (taxableForAdjustment - 2_000_000)) * 0.05)
+        Math.max(2_500, (humanDeductionDiff - (taxableForAdjustment - 2_000_000)) * 0.05),
       );
     }
   }

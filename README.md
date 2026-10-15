@@ -45,7 +45,7 @@
 - **スタイリング**: [Tailwind CSS v4](https://tailwindcss.com/)
 - **アイコン**: [Lucide React](https://lucide.dev/)
 - **テストフレームワーク**: [Vitest](https://vitest.dev/), [@testing-library/react](https://testing-library.com/)
-- **リンター**: [Oxlint](https://oxc.rs/)
+- **リンター & フォーマッター**: [Biome](https://biomejs.dev/)
 
 ---
 
@@ -63,6 +63,9 @@ npm install
 
 # 開発サーバー起動 (http://localhost:5173)
 npm run dev
+
+# コード検証 & 自動フォーマット (Biome)
+npm run check
 
 # 単体・統合テストの実行
 npm test

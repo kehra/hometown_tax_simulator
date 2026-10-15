@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { FileText, ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
 import type { UserInputState } from '../../domain/calculator/types';
 import { NumberInput } from '../common/NumberInput';
 
@@ -45,7 +46,9 @@ export const OtherDeductionsSection: React.FC<OtherDeductionsSectionProps> = ({
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-500">確定申告書Bの各控除欄の数字をそのまま入力できます</p>
+            <p className="text-xs text-slate-500">
+              確定申告書Bの各控除欄の数字をそのまま入力できます
+            </p>
           </div>
         </div>
 

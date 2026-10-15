@@ -1,5 +1,5 @@
-import React from 'react';
-import { Sparkles, Save, Trash2, Zap, SlidersHorizontal } from 'lucide-react';
+import { Save, SlidersHorizontal, Sparkles, Trash2, Zap } from 'lucide-react';
+import type React from 'react';
 
 interface HeaderProps {
   isSimpleMode: boolean;
@@ -17,7 +17,10 @@ export const Header: React.FC<HeaderProps> = ({
   hasInputValues,
 }) => {
   const handleResetClick = () => {
-    if (!hasInputValues || window.confirm('入力内容とキャッシュをすべてクリアしてもよろしいですか？')) {
+    if (
+      !hasInputValues ||
+      window.confirm('入力内容とキャッシュをすべてクリアしてもよろしいですか？')
+    ) {
       onReset();
     }
   };
@@ -94,4 +97,3 @@ export const Header: React.FC<HeaderProps> = ({
     </header>
   );
 };
-

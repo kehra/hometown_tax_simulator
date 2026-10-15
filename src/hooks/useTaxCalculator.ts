@@ -1,7 +1,7 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
-import type { TaxCalculationResult, UserInputState } from '../domain/calculator/types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { calculateHometownTax } from '../domain/calculator/hometownTax';
+import type { TaxCalculationResult, UserInputState } from '../domain/calculator/types';
+import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 
 const STORAGE_KEY_INPUTS = 'furusato_sim_inputs_v1';
 const STORAGE_KEY_SIMPLE_MODE = 'furusato_sim_mode_simple_v1';
@@ -48,12 +48,15 @@ export function useTaxCalculator() {
     }
   }, [isSimpleMode]);
 
-  const updateField = useCallback(<K extends keyof UserInputState>(key: K, value: UserInputState[K]) => {
-    setInputs((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  }, []);
+  const updateField = useCallback(
+    <K extends keyof UserInputState>(key: K, value: UserInputState[K]) => {
+      setInputs((prev) => ({
+        ...prev,
+        [key]: value,
+      }));
+    },
+    [],
+  );
 
   const [lastSavedAt, setLastSavedAt] = useState<Date | null>(null);
 

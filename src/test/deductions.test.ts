@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { calcBusinessIncome } from '../domain/calculator/businessIncome';
 import { calcDeductions } from '../domain/calculator/deductions';
-import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 import type { UserInputState } from '../domain/calculator/types';
+import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 
 describe('Business Income Calculator', () => {
   it('calculates business income correctly with 650k blue deduction', () => {

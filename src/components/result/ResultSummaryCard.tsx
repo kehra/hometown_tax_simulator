@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Award, Copy, Check } from 'lucide-react';
+import { Award, Check, Copy } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
 import type { TaxCalculationResult } from '../../domain/calculator/types';
 
 interface ResultSummaryCardProps {
@@ -29,7 +30,10 @@ export const ResultSummaryCard: React.FC<ResultSummaryCardProps> = ({ result }) 
   const isZero = result.hometownTaxLimit === 0;
 
   return (
-    <div id="sim-result" className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-emerald-900/10 mb-6 relative overflow-hidden">
+    <div
+      id="sim-result"
+      className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-emerald-900/10 mb-6 relative overflow-hidden"
+    >
       <div className="absolute -right-8 -bottom-8 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none" />
 
       <div className="flex items-center justify-between mb-3">
@@ -67,15 +71,21 @@ export const ResultSummaryCard: React.FC<ResultSummaryCardProps> = ({ result }) 
       <div className="grid grid-cols-3 gap-2 pt-4 border-t border-white/15 text-center text-xs">
         <div className="bg-white/10 rounded-2xl p-2.5 backdrop-blur-xs">
           <span className="block text-emerald-200 text-[11px] mb-0.5">事業所得</span>
-          <span className="font-bold text-sm sm:text-base">{result.businessIncome.toLocaleString('ja-JP')}円</span>
+          <span className="font-bold text-sm sm:text-base">
+            {result.businessIncome.toLocaleString('ja-JP')}円
+          </span>
         </div>
         <div className="bg-white/10 rounded-2xl p-2.5 backdrop-blur-xs">
           <span className="block text-emerald-200 text-[11px] mb-0.5">所得税率</span>
-          <span className="font-bold text-sm sm:text-base">{(result.marginalIncomeTaxRate * 100).toFixed(0)}%</span>
+          <span className="font-bold text-sm sm:text-base">
+            {(result.marginalIncomeTaxRate * 100).toFixed(0)}%
+          </span>
         </div>
         <div className="bg-white/10 rounded-2xl p-2.5 backdrop-blur-xs">
           <span className="block text-emerald-200 text-[11px] mb-0.5">住民税所得割額</span>
-          <span className="font-bold text-sm sm:text-base">{result.residentTaxIncomePercent.toLocaleString('ja-JP')}円</span>
+          <span className="font-bold text-sm sm:text-base">
+            {result.residentTaxIncomePercent.toLocaleString('ja-JP')}円
+          </span>
         </div>
       </div>
     </div>

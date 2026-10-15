@@ -22,7 +22,7 @@ export function calcBusinessIncome(
   revenue: number,
   expenses: number,
   blueType: BlueDeductionType,
-  familySalary: number
+  familySalary: number,
 ): BusinessIncomeResult {
   const safeRevenue = Math.max(0, revenue);
   const safeExpenses = Math.max(0, expenses);

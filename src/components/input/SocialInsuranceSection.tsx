@@ -1,5 +1,5 @@
-import React from 'react';
 import { ShieldCheck } from 'lucide-react';
+import type React from 'react';
 import type { UserInputState } from '../../domain/calculator/types';
 import { NumberInput } from '../common/NumberInput';
 
@@ -19,9 +19,7 @@ export const SocialInsuranceSection: React.FC<SocialInsuranceSectionProps> = ({
           <ShieldCheck size={18} />
         </div>
         <div>
-          <h2 className="text-base sm:text-lg font-bold text-slate-800">
-            2. 社会保険・共済・年金
-          </h2>
+          <h2 className="text-base sm:text-lg font-bold text-slate-800">2. 社会保険・共済・年金</h2>
           <p className="text-xs text-slate-500">個人事業主の節税効果がとても高い重要控除です</p>
         </div>
       </div>

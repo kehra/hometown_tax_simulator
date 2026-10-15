@@ -1,5 +1,5 @@
-import React from 'react';
 import { ArrowUp } from 'lucide-react';
+import type React from 'react';
 import type { TaxCalculationResult } from '../../domain/calculator/types';
 
 interface FloatingSummaryBarProps {

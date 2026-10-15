@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { useTaxCalculator } from '../hooks/useTaxCalculator';
 
 describe('useTaxCalculator Hook', () => {
@@ -72,7 +72,9 @@ describe('useTaxCalculator Hook', () => {
     expect(success).toBe(true);
     const stored = localStorage.getItem('furusato_sim_inputs_v1');
     expect(stored).not.toBeNull();
-    expect(JSON.parse(stored!).easyTaxableIncome).toBe(4_000_000);
+    if (stored) {
+      expect(JSON.parse(stored).easyTaxableIncome).toBe(4_000_000);
+    }
 
     act(() => {
       result.current.clearInputs();

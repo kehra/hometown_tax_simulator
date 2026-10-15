@@ -1,8 +1,8 @@
-import React from 'react';
 import { Briefcase, TrendingUp } from 'lucide-react';
+import type React from 'react';
+import { calcBusinessIncome } from '../../domain/calculator/businessIncome';
 import type { BlueDeductionType, UserInputState } from '../../domain/calculator/types';
 import { NumberInput } from '../common/NumberInput';
-import { calcBusinessIncome } from '../../domain/calculator/businessIncome';
 
 interface BusinessIncomeSectionProps {
   inputs: UserInputState;
@@ -19,7 +19,7 @@ export const BusinessIncomeSection: React.FC<BusinessIncomeSectionProps> = ({
     inputs.businessRevenue,
     inputs.businessExpenses,
     inputs.blueDeduction,
-    inputs.familySalary
+    inputs.familySalary,
   );
 
   const blueOptions: { type: BlueDeductionType; label: string; desc: string }[] = [
@@ -36,9 +36,7 @@ export const BusinessIncomeSection: React.FC<BusinessIncomeSectionProps> = ({
           <Briefcase size={18} />
         </div>
         <div>
-          <h2 className="text-base sm:text-lg font-bold text-slate-800">
-            1. 事業の収入と経費
-          </h2>
+          <h2 className="text-base sm:text-lg font-bold text-slate-800">1. 事業の収入と経費</h2>
           <p className="text-xs text-slate-500">1年間の売上と経費を入力してください</p>
         </div>
       </div>
@@ -76,9 +74,7 @@ export const BusinessIncomeSection: React.FC<BusinessIncomeSectionProps> = ({
 
       {/* 青色申告特別控除の選択 */}
       <div className="mt-4 pt-4 border-t border-slate-100">
-        <label className="text-sm font-semibold text-slate-800 block mb-2">
-          青色申告特別控除
-        </label>
+        <span className="text-sm font-semibold text-slate-800 block mb-2">青色申告特別控除</span>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {blueOptions.map((opt) => {
             const isSelected = inputs.blueDeduction === opt.type;
@@ -95,9 +91,7 @@ export const BusinessIncomeSection: React.FC<BusinessIncomeSectionProps> = ({
               >
                 <div
                   className={`w-4 h-4 rounded-full mt-0.5 mr-2.5 flex items-center justify-center border transition-all ${
-                    isSelected
-                      ? 'border-emerald-600 bg-emerald-600'
-                      : 'border-slate-300 bg-white'
+                    isSelected ? 'border-emerald-600 bg-emerald-600' : 'border-slate-300 bg-white'
                   }`}
                 >
                   {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}

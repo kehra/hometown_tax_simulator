@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Calculator, CheckCircle2 } from 'lucide-react';
+import { Calculator, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import type React from 'react';
+import { useState } from 'react';
 import type { TaxCalculationResult } from '../../domain/calculator/types';
 
 interface FormulaBreakdownProps {
@@ -23,7 +24,9 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({ result }) =>
           <h2 className="text-base sm:text-lg font-bold text-slate-800">
             どうやって計算したの？（計算式のウラ側）
           </h2>
-          <p className="text-xs text-slate-500">あなたの入力値を代入したステップ順の計算プロセスです</p>
+          <p className="text-xs text-slate-500">
+            あなたの入力値を代入したステップ順の計算プロセスです
+          </p>
         </div>
       </div>
 
@@ -34,7 +37,9 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({ result }) =>
             <div
               key={step.stepNumber}
               className={`border rounded-2xl transition-all ${
-                isOpen ? 'border-teal-400 bg-teal-50/20 shadow-xs' : 'border-slate-200 bg-white hover:border-slate-300'
+                isOpen
+                  ? 'border-teal-400 bg-teal-50/20 shadow-xs'
+                  : 'border-slate-200 bg-white hover:border-slate-300'
               }`}
             >
               <button
@@ -64,18 +69,22 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({ result }) =>
 
               {isOpen && (
                 <div className="px-4 pb-4 pt-1 border-t border-teal-100/60 animate-in fade-in duration-150">
-                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">
-                    {step.description}
-                  </p>
+                  <p className="text-xs text-slate-600 mb-3 leading-relaxed">{step.description}</p>
 
                   <div className="bg-slate-900 text-slate-100 p-3.5 rounded-xl font-mono text-xs leading-relaxed space-y-2">
                     <div>
-                      <span className="text-slate-400 text-[10px] block font-sans">【基本公式】</span>
-                      <code className="text-emerald-400 block whitespace-pre-wrap">{step.formula}</code>
+                      <span className="text-slate-400 text-[10px] block font-sans">
+                        【基本公式】
+                      </span>
+                      <code className="text-emerald-400 block whitespace-pre-wrap">
+                        {step.formula}
+                      </code>
                     </div>
 
                     <div className="pt-2 border-t border-slate-800">
-                      <span className="text-slate-400 text-[10px] block font-sans">【あなたの数値を代入】</span>
+                      <span className="text-slate-400 text-[10px] block font-sans">
+                        【あなたの数値を代入】
+                      </span>
                       <code className="text-amber-300 block whitespace-pre-wrap font-semibold leading-relaxed">
                         {step.formulaWithValues}
                       </code>
@@ -105,23 +114,36 @@ export const FormulaBreakdown: React.FC<FormulaBreakdownProps> = ({ result }) =>
             <tbody className="divide-y divide-slate-100 text-slate-700">
               <tr>
                 <td className="py-2 font-medium">所得控除の合計</td>
-                <td className="py-2 text-right font-semibold">{result.totalDeductionsIncomeTax.toLocaleString()} 円</td>
-                <td className="py-2 text-right font-semibold">{result.totalDeductionsResidentTax.toLocaleString()} 円</td>
+                <td className="py-2 text-right font-semibold">
+                  {result.totalDeductionsIncomeTax.toLocaleString()} 円
+                </td>
+                <td className="py-2 text-right font-semibold">
+                  {result.totalDeductionsResidentTax.toLocaleString()} 円
+                </td>
               </tr>
               <tr>
                 <td className="py-2 font-medium">課税所得金額（千円未満切捨）</td>
-                <td className="py-2 text-right font-semibold">{result.taxableIncome.toLocaleString()} 円</td>
-                <td className="py-2 text-right font-semibold">{result.taxableIncomeResidentTax.toLocaleString()} 円</td>
+                <td className="py-2 text-right font-semibold">
+                  {result.taxableIncome.toLocaleString()} 円
+                </td>
+                <td className="py-2 text-right font-semibold">
+                  {result.taxableIncomeResidentTax.toLocaleString()} 円
+                </td>
               </tr>
               <tr>
                 <td className="py-2 font-medium">適用税率</td>
-                <td className="py-2 text-right font-semibold">{(result.marginalIncomeTaxRate * 100).toFixed(0)}% (実効 {(result.effectiveIncomeTaxRate * 100).toFixed(2)}%)</td>
+                <td className="py-2 text-right font-semibold">
+                  {(result.marginalIncomeTaxRate * 100).toFixed(0)}% (実効{' '}
+                  {(result.effectiveIncomeTaxRate * 100).toFixed(2)}%)
+                </td>
                 <td className="py-2 text-right font-semibold">10% (調整控除前)</td>
               </tr>
               <tr className="bg-emerald-50/50 font-bold text-slate-900">
                 <td className="py-2.5 text-emerald-900">住民税 所得割額（特例控除の基準）</td>
                 <td className="py-2.5 text-right text-slate-400 font-normal">-</td>
-                <td className="py-2.5 text-right text-emerald-800">{result.residentTaxIncomePercent.toLocaleString()} 円</td>
+                <td className="py-2.5 text-right text-emerald-800">
+                  {result.residentTaxIncomePercent.toLocaleString()} 円
+                </td>
               </tr>
             </tbody>
           </table>

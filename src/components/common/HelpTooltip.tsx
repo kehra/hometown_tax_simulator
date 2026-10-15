@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { HelpCircle } from 'lucide-react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface HelpTooltipProps {
   text: string;

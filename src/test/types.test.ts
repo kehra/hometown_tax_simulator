@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
+import { describe, expect, it } from 'vitest';
 import type { UserInputState } from '../domain/calculator/types';
+import { DEFAULT_USER_INPUT } from '../domain/calculator/types';
 
 describe('Domain Types and Default State', () => {
   it('should provide valid default UserInputState', () => {
