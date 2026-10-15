@@ -1,5 +1,7 @@
 # 個人事業主向け ふるさと納税シミュレータ
 
+🔗 **Webサイト**: [https://kehra.github.io/hometown_tax_simulator/](https://kehra.github.io/hometown_tax_simulator/)
+
 個人事業主・フリーランス専用のふるさと納税寄附上限額シミュレーターです。  
 売上・経費・青色申告特別控除や各種所得控除から、実質自己負担2,000円で寄附できる上限目安額を正確に試算します。
 
